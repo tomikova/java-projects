@@ -574,7 +574,7 @@ public class JNotepadPP extends JFrame {
 		};
 
 		/**
-		 * Save currently selected docuent under new name.
+		 * Save currently selected document under new name.
 		 */
 		saveAsDocumentAction = new LocalizableAction("save_as", flp) {
 
