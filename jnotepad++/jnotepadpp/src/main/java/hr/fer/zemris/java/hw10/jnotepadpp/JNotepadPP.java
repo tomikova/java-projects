@@ -485,7 +485,7 @@ public class JNotepadPP extends JFrame {
 
 	/**
 	 * Method creates program actions. All actions are derived from LocalizableAction
-	 * class which enables them to dynamicly update its parameters on language change.
+	 * class which enables them to dynamically update its parameters on language change.
 	 */
 	private void createActions() {
 
