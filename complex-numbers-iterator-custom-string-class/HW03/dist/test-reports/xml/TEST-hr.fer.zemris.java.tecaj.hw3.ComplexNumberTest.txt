@@ -1,0 +1,21 @@
+Testsuite: hr.fer.zemris.java.tecaj.hw3.ComplexNumberTest
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,033 sec
+
+Testcase: subTest took 0,003 sec
+Testcase: parseImaginaryOnlyTest took 0 sec
+Testcase: addTest took 0,001 sec
+Testcase: getMagnitudeTest took 0 sec
+Testcase: getAngleTest took 0 sec
+Testcase: rootTest took 0,001 sec
+Testcase: fromImaginaryTest took 0 sec
+Testcase: parseRealOnlyTest took 0,001 sec
+Testcase: powerTest took 0 sec
+Testcase: fromRealTest took 0 sec
+Testcase: parseCompleteTest took 0,001 sec
+Testcase: mulTest took 0 sec
+Testcase: divTest took 0,001 sec
+Testcase: complexNumberExceptionTest_1 took 0 sec
+Testcase: complexNumberExceptionTest_2 took 0,001 sec
+Testcase: complexNumberExceptionTest_3 took 0 sec
+Testcase: complexNumberExceptionTest_4 took 0 sec
+Testcase: fromMagnitudeAndAngleTest took 0 sec

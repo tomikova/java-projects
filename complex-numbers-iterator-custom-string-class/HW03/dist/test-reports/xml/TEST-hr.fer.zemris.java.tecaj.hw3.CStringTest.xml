@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="Tomislav-PC" name="hr.fer.zemris.java.tecaj.hw3.CStringTest" skipped="0" tests="44" time="0.137" timestamp="2015-03-31T17:49:53">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="sun.management.compiler" value="HotSpot Client Compiler" />
+    <property name="dist" value="E:\eclipse_workspaces\java1\HW03-0036461026\dist" />
+    <property name="os.name" value="Windows 7" />
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_40\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_40\jre\classes" />
+    <property name="TODAY" value="March 31 2015" />
+    <property name="user.country.format" value="HR" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="D:\usr\apache-ant-1.9.4" />
+    <property name="java.runtime.version" value="1.8.0_40-b26" />
+    <property name="user.name" value="Tomislav" />
+    <property name="user.language.format" value="hr" />
+    <property name="src.java" value="E:\eclipse_workspaces\java1\HW03-0036461026\src\main\java" />
+    <property name="user.language" value="en" />
+    <property name="build" value="E:\eclipse_workspaces\java1\HW03-0036461026\build" />
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_40\jre\bin" />
+    <property name="ant.project.default-target" value="init" />
+    <property name="ant.project.name" value="HW03-0036461026" />
+    <property name="DSTAMP" value="20150331" />
+    <property name="java.version" value="1.8.0_40" />
+    <property name="user.timezone" value="Europe/Belgrade" />
+    <property name="sun.arch.data.model" value="32" />
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_40\jre\lib\endorsed" />
+    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86" />
+    <property name="sun.jnu.encoding" value="Cp1250" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="jacoco.home" value="d:/usr/jacoco-0.7.4" />
+    <property name="java.class.version" value="52.0" />
+    <property name="src" value="E:\eclipse_workspaces\java1\HW03-0036461026\src" />
+    <property name="user.country" value="US" />
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_40\jre" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="E:\eclipse_workspaces\java1\HW03-0036461026\build.xml" />
+    <property name="os.version" value="6.1" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="25.40-b25" />
+    <property name="user.variant" value="" />
+    <property name="ant.library.dir" value="D:\usr\apache-ant-1.9.4\lib" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="_jacoco.agentFile" value="C:\Users\Tomislav\AppData\Local\Temp\jacocoagent221368758682159856.jar" />
+    <property name="sun.stdout.encoding" value="cp852" />
+    <property name="xalan.home" value="d:/usr/xalan-j_2_7_1" />
+    <property name="user.script" value="" />
+    <property name="ant.file.HW03-0036461026" value="E:\eclipse_workspaces\java1\HW03-0036461026\build.xml" />
+    <property name="user.home" value="C:\Users\Tomislav" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_40\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\usr\apache-ant-1.9.4\bin;C:\Program Files\Java\jdk1.8.0_40\bin;C:\Program Files\Java\jdk1.8.0_40\jre\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Common Files\Adobe\AGL;C:\Program Files\Windows Live\Shared;C:\Program Files\GtkSharp\2.12\bin;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;D:\wamp\bin\php\php5.3.10;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Python27;C:\Program Files\Java\jdk1.7.0_45\bin;." />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner testsfile=E:\eclipse_workspaces\java1\HW03-0036461026\junittestcases1561625728195184317.properties skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter,E:\eclipse_workspaces\java1\HW03-0036461026\dist\test-reports\xml\IGNORETHIS.txt formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,E:\eclipse_workspaces\java1\HW03-0036461026\dist\test-reports\xml\IGNORETHIS.xml crashfile=E:\eclipse_workspaces\java1\HW03-0036461026\junitvmwatcher5062722863176410022.properties propsfile=E:\eclipse_workspaces\java1\HW03-0036461026\junit3751570408254478549.properties" />
+    <property name="java.class.path" value="E:\eclipse_workspaces\java1\HW03-0036461026\build\classes;E:\eclipse_workspaces\java1\HW03-0036461026\build\test;d:\usr\junit-4.12\hamcrest-core-1.3.jar;d:\usr\junit-4.12\junit-4.12.jar;D:\usr\apache-ant-1.9.4\lib\ant-launcher.jar;D:\usr\apache-ant-1.9.4\lib\ant.jar;D:\usr\apache-ant-1.9.4\lib\ant-junit.jar;D:\usr\apache-ant-1.9.4\lib\ant-junit4.jar;C:\Users\Tomislav\AppData\Local\Temp\jacocoagent221368758682159856.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.4 compiled on April 29 2014" />
+    <property name="TSTAMP" value="1949" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.file.type" value="file" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="build.classes" value="E:\eclipse_workspaces\java1\HW03-0036461026\build\classes" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="src.test" value="E:\eclipse_workspaces\java1\HW03-0036461026\src\test\java" />
+    <property name="java.io.tmpdir" value="C:\Users\Tomislav\AppData\Local\Temp\" />
+    <property name="pmd.home" value="d:/usr/pmd-bin-5.2.3" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="os.arch" value="x86" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext;C:\Windows\Sun\Java\lib\ext" />
+    <property name="user.dir" value="E:\eclipse_workspaces\java1\HW03-0036461026" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM" />
+    <property name="basedir" value="E:\eclipse_workspaces\java1\HW03-0036461026" />
+    <property name="junit.home" value="d:/usr/junit-4.12" />
+    <property name="ant.file.type.HW03-0036461026" value="file" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="ant.core.lib" value="D:\usr\apache-ant-1.9.4\lib\ant.jar" />
+    <property name="file.encoding" value="Cp1250" />
+    <property name="sun.stderr.encoding" value="cp852" />
+    <property name="build.test" value="E:\eclipse_workspaces\java1\HW03-0036461026\build\test" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="ant.project.invoked-targets" value="run-tests" />
+  </properties>
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="toCharArrayTest" time="0.015" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="indexOfTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="indexOfTest_2" time="0.001" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="indexOfTest_3" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="containsTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="containsTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="containsTest_3" time="0.001" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="containsTest_4" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="rightTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="rightTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="rightTest_3" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="substringTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="substringTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="substringTest_3" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="substringTest_4" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="replaceAllCharTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="replaceAllCharTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="addTest_1" time="0.001" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="addTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="cStringExceptionTest_1" time="0.001" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="cStringExceptionTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="cStringExceptionTest_3" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="cStringExceptionTest_4" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="cStringExceptionTest_5" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="cStringExceptionTest_6" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="cStringExceptionTest_7" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="charAtTest" time="0.001" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="toStringTest" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="startsWithTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="startsWithTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="startsWithTest_3" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="lengthTest" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="replaceAllStringTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="replaceAllStringTest_2" time="0.001" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="constructorTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="constructorTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="constructorTest_3" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="constructorTest_4" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="endsWithTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="endsWithTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="endsWithTest_3" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="leftTest_1" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="leftTest_2" time="0.0" />
+  <testcase classname="hr.fer.zemris.java.tecaj.hw3.CStringTest" name="leftTest_3" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ComplexNumber.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW03-0036461026</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw3</a> &gt; <span class="el_source">ComplexNumber.java</span></div><h1>ComplexNumber.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj.hw3;
+
+import java.text.DecimalFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Klasa koja pruza podrsku za rad s kompleksnim brojevima.
+ * @author Tomislav
+ */
+
+public class ComplexNumber {
+	
+	private double real;
+	private double imaginary;
+	private static final int ZERO = 0;
+	private static final int ONE = 1;
+	private static final int NEG_ONE = -1;
+	
+	/**
+	 * Konstruktor koji prima dva parametra.
+	 * @param real Realni dio kompleksnog broja.
+	 * @param imaginary Imaginarni dio kompleksnog broja.
+	 */
+	
+<span class="fc" id="L26">	public ComplexNumber(double real, double imaginary) {</span>
+<span class="fc" id="L27">		this.real = real;</span>
+<span class="fc" id="L28">		this.imaginary = imaginary;</span>
+<span class="fc" id="L29">	}</span>
+	
+	/**
+	 * Metoda koja stvara kompleksni broj na osnovu samo realnog dijela.
+	 * Imaginarni dio se postavlja na vrijednost 0.
+	 * @param real Realni dio kompleksnog broja.
+	 * @return Stvoreni kompleksni broj.
+	 */
+	
+	public static ComplexNumber fromReal(double real){
+<span class="fc" id="L39">		return new ComplexNumber(real,ZERO);</span>
+	}
+	
+	/**
+	 * Metoda koja stvara kompleksni broj na osnovu samo imaginarnog dijela.
+	 * Realni dio se postavlja na vrijednost 0.
+	 * @param imaginary Imaginarni dio kompleksnog broja.
+	 * @return Stvoreni kompleksni broj.
+	 */
+	
+	public static ComplexNumber fromImaginary(double imaginary){
+<span class="fc" id="L50">		return new ComplexNumber(ZERO,imaginary);</span>
+	}
+	
+	/**
+	 * Metoda koja stvara kompleksni broj na osnovu modula i kuta.
+	 * @param magnitude Modul kompleksnog broja.
+	 * @param angle Kut kompleksnog broja.
+	 * @return Stvoreni kompleksni broj.
+	 */
+	
+	public static ComplexNumber fromMagnitudeAndAngle(double magnitude, double angle){
+<span class="fc" id="L61">		return new ComplexNumber(magnitude*Math.cos(angle),magnitude*Math.sin(angle));</span>
+	}
+	
+	/**
+	 * Metoda koja parsira kompleksni broj iz string vrijednosti.
+	 * Puni format kompleksnog broja koji se trazi je: 
+	 * *[+/-][numericka vrijednost][+/-][numericka vrijedost][i]
+	 * Ostali formati koji se prihvacaju su:
+	 * *[+/-][numericka vrijednost] te 
+	 * *[+/-]*[numericka vrijednost][i]
+	 * * -&gt; vrijednost je opcionalna.
+	 * @param string  String koji se pokusava parsirati kao kompleksni broj.
+	 * @return Stvoreni kompleksni broj.
+	 * @throws ComplexNumberException Ako string nije kompleksni broj ili ako je
+	 * kompleksni broj zadan u krivom formatu.
+	 */
+	
+	public static ComplexNumber parse(String string){
+<span class="fc" id="L79">		string = string.replaceAll(&quot;\\s+&quot;,&quot;&quot;);</span>
+<span class="pc bpc" id="L80" title="1 of 4 branches missed.">		if (string.equals(&quot;i&quot;) || string.equals(&quot;+i&quot;)){</span>
+<span class="fc" id="L81">			return new ComplexNumber(ZERO,ONE);</span>
+		}
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">		if (string.equals(&quot;-i&quot;)){</span>
+<span class="nc" id="L84">			return new ComplexNumber(ZERO,NEG_ONE);</span>
+		}
+<span class="fc" id="L86">		Pattern pattern = Pattern.compile(&quot;^([+-]?\\d*\\.??\\d+)i$&quot;);</span>
+<span class="fc" id="L87">		Matcher matcher = pattern.matcher(string);</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		if(matcher.matches()){</span>
+<span class="nc" id="L89">			double imaginary = Double.parseDouble(matcher.group(1));</span>
+<span class="nc" id="L90">			return new ComplexNumber(ZERO,imaginary);</span>
+		}
+<span class="fc" id="L92">		pattern = Pattern.compile(&quot;^([+-]?\\d*\\.??\\d+)$&quot;);</span>
+<span class="fc" id="L93">		matcher = pattern.matcher(string);</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">		if(matcher.matches()){</span>
+<span class="fc" id="L95">			double real = Double.parseDouble(matcher.group(1));</span>
+<span class="fc" id="L96">			return new ComplexNumber(real,ZERO);</span>
+		}
+<span class="fc" id="L98">		pattern = Pattern.compile(&quot;^([+-]?\\d*\\.??\\d+)([+-]?\\d*\\.??\\d+)i$&quot;);</span>
+<span class="fc" id="L99">		matcher = pattern.matcher(string);</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">		if(matcher.matches()){</span>
+<span class="fc" id="L101">			double real = Double.parseDouble(matcher.group(1));</span>
+<span class="fc" id="L102">			double imaginary = Double.parseDouble(matcher.group(2));</span>
+<span class="fc" id="L103">			return new ComplexNumber(real,imaginary);</span>
+		}
+		else{
+<span class="fc" id="L106">		  throw new ComplexNumberException(&quot;Unable to parse complex number.&quot;);</span>
+		}
+	}
+	
+	/**
+	 * Metoda koja dohvaca realni dio kompleksnog broja.
+	 * @return Realni dio kompleksnog broja.
+	 */
+	
+	public double getReal(){
+<span class="fc" id="L116">		return real;</span>
+	}
+	
+	/**
+	 * Metoda koja dohvaca imaginarni dio kompleksnog broja.
+	 * @return Imaginarni dio kompleksnog broja.
+	 */
+	
+	public double getImaginary(){
+<span class="fc" id="L125">		return imaginary;</span>
+	}
+	
+	/**
+	 * Metoda koja dohvaca modul kompleksnog broja.
+	 * @return Modul kompleksnog broja.
+	 */
+	
+	public double getMagnitude(){
+<span class="fc" id="L134">		return  Math.sqrt(Math.pow(real,2) + Math.pow(imaginary, 2));</span>
+	}
+	
+	/**
+	 * Metoda koja dohvaca kut kompleksnog broja.
+	 * @return Kut kompleksnog broja.
+	 */
+	
+	public double getAngle(){
+<span class="fc" id="L143">		double angle = Math.atan2(imaginary,real);</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">		if (angle &lt; 0){</span>
+<span class="fc" id="L145">			angle += 2*Math.PI;</span>
+		}
+<span class="fc" id="L147">		return angle;</span>
+	}
+	
+	/**
+	 * Metoda za zbrajanje kompleksnih brojeva.
+	 * @param complex Kompleksni broj koji ce se pribrojiti.
+	 * @return Kompleksni broj nastao operacijom zbrajanja.
+	 */
+	
+	public ComplexNumber add(ComplexNumber complex){
+<span class="fc" id="L157">		return new ComplexNumber(real+complex.real,imaginary+complex.imaginary);</span>
+	}
+	
+	/**
+	 * Metoda za oduzimanje kompleksnih brojeva.
+	 * @param complex Kompleksni broj koji ce se oduzeti.
+	 * @return Kompleksni broj nastao operacijom oduzimanja.
+	 */
+	
+	public ComplexNumber sub(ComplexNumber complex){
+<span class="fc" id="L167">		return new ComplexNumber(real-complex.real,imaginary-complex.imaginary);</span>
+	}
+	
+	/**
+	 * Metoda za mnozenje kompleksnih brojeva.
+	 * @param complex Kompleksni broj s kojim ce se mnoziti.
+	 * @return Kompleksni broj nastao operacijom mnozenja.
+	 */
+	
+	public ComplexNumber mul(ComplexNumber complex){		
+<span class="fc" id="L177">		double mulMagnitude = this.getMagnitude()*complex.getMagnitude();</span>
+<span class="fc" id="L178">		double mulAngle = this.getAngle()+complex.getAngle();</span>
+<span class="fc" id="L179">		return new ComplexNumber(mulMagnitude*Math.cos(mulAngle),mulMagnitude*Math.sin(mulAngle));</span>
+	}
+	
+	/**
+	 * Metoda za djeljenje kompleksnih brojeva.
+	 * @param complex Kompleksni broj s kojim ce se djeliti.
+	 * @return Kompleksni broj nastao operacijom djeljenja.
+	 */
+	
+	public ComplexNumber div(ComplexNumber complex){		
+<span class="fc" id="L189">		double mulMagnitude = this.getMagnitude()/complex.getMagnitude();</span>
+<span class="fc" id="L190">		double mulAngle = this.getAngle()-complex.getAngle();</span>
+<span class="fc" id="L191">		return new ComplexNumber(mulMagnitude*Math.cos(mulAngle),mulMagnitude*Math.sin(mulAngle));</span>
+	}
+	
+	/**
+	 * Metoda za potenciranje kompleksnog broja.
+	 * @param power Potencija kompleksnog broja. Vrijednost ne  smije biti negativna.
+	 * @return Kompleksni broj nastao operacijom potenciranja.
+	 * @throws ComplexNumberException Ako je potencija manje od nula.
+	 */
+	
+	public ComplexNumber power(int power){
+<span class="fc bfc" id="L202" title="All 2 branches covered.">		if (power &lt; 0){</span>
+<span class="fc" id="L203">			throw new ComplexNumberException(&quot;Power must be non-negative number.&quot;);</span>
+		}
+<span class="fc" id="L205">		double powerMagnitude = Math.pow(this.getMagnitude(), power);</span>
+<span class="fc" id="L206">		double powerAngle = power*this.getAngle();</span>
+<span class="fc" id="L207">		return new ComplexNumber(powerMagnitude*Math.cos(powerAngle),powerMagnitude*Math.sin(powerAngle));</span>
+	}
+	
+	/**
+	 * Metoda za korijenovanje kompleksnog broja. 
+	 * @param root Korijen kompleksnog broja. Vrijednost mora biti pozitivan prirodan broj. 
+	 * @return Kompleksni brojevi nastali operacijom korijenovanja.
+	 * @throws ComplexNumberException Ako korijen nije pozitivan prirodan broj.
+	 */
+	
+	public ComplexNumber[] root(int root){
+<span class="fc bfc" id="L218" title="All 2 branches covered.">		if (root &lt; 1){</span>
+<span class="fc" id="L219">			throw new ComplexNumberException(&quot;Root must be positive number&quot;);</span>
+		}
+<span class="fc" id="L221">		double rootMagnitude = Math.pow(this.getMagnitude(), 1./root);</span>
+<span class="fc" id="L222">		double angle = this.getAngle();</span>
+<span class="fc" id="L223">		ComplexNumber[] complexNumbers = new ComplexNumber[root];</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">		for (int i = 0; i &lt; root; i++){</span>
+<span class="fc" id="L225">			complexNumbers[i] = new ComplexNumber(rootMagnitude*Math.cos((angle+2*i*Math.PI)/root),</span>
+<span class="fc" id="L226">					                             rootMagnitude*Math.sin((angle+2*i*Math.PI)/root));</span>
+		}
+<span class="fc" id="L228">		return complexNumbers;</span>
+	}
+	
+	/**
+	 * Metoda koja pretvara kompleksni broj u String format.
+	 */
+	
+	public String toString(){
+<span class="fc" id="L236">		String complexString = &quot;&quot;;</span>
+<span class="fc" id="L237">		DecimalFormat decimFormat = new DecimalFormat(&quot;0.####;-0.####&quot;);</span>
+<span class="fc bfc" id="L238" title="All 2 branches covered.">		if (real != 0){</span>
+<span class="fc" id="L239">			complexString += decimFormat.format(real);</span>
+		}
+<span class="fc bfc" id="L241" title="All 2 branches covered.">		if (imaginary != 0){</span>
+<span class="fc bfc" id="L242" title="All 4 branches covered.">			complexString += (real != 0 &amp;&amp; imaginary &gt; 0 ? &quot;+&quot; : &quot;&quot;) + decimFormat.format(imaginary)+&quot;i&quot;;</span>
+		}
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">		if (complexString.equals(&quot;&quot;)){</span>
+<span class="nc" id="L245">			complexString = &quot;0&quot;;</span>
+		}	
+<span class="fc" id="L247">		return complexString;</span>
+	}
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

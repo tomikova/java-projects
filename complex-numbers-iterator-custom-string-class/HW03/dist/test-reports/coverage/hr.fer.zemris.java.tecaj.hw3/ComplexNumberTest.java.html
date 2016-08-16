@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ComplexNumberTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW03-0036461026</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw3</a> &gt; <span class="el_source">ComplexNumberTest.java</span></div><h1>ComplexNumberTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj.hw3;
+
+import org.junit.Test;
+
+/**
+ * Klasa u kojoj se nalaze testovi za ComplexNumber.
+ * @author Tomislav
+ */
+
+import org.junit.Assert;
+
+<span class="fc" id="L12">public class ComplexNumberTest {</span>
+	
+	@Test
+	public void fromRealTest() {
+<span class="fc" id="L16">		ComplexNumber complex = ComplexNumber.fromReal(5.36);</span>
+<span class="fc" id="L17">		Assert.assertEquals(5.36,complex.getReal(), 1E-8);</span>
+<span class="fc" id="L18">	}</span>
+	
+	@Test
+	public void fromImaginaryTest() {
+<span class="fc" id="L22">		ComplexNumber complex = ComplexNumber.fromImaginary(9.5945);</span>
+<span class="fc" id="L23">		Assert.assertEquals(9.5945,complex.getImaginary(), 1E-8);</span>
+<span class="fc" id="L24">	}</span>
+	
+	@Test
+	public void fromMagnitudeAndAngleTest() {
+<span class="fc" id="L28">		ComplexNumber complex = ComplexNumber.fromMagnitudeAndAngle(5.14,Math.PI/3);</span>
+<span class="fc" id="L29">		String complexString = complex.toString();</span>
+<span class="fc" id="L30">		Assert.assertEquals(&quot;2,57+4,4514i&quot;,complexString);</span>
+<span class="fc" id="L31">	}</span>
+	
+	@Test
+	public void parseRealOnlyTest() {
+<span class="fc" id="L35">		ComplexNumber complex = ComplexNumber.parse(&quot;4.598&quot;);</span>
+<span class="fc" id="L36">		String complexString = complex.toString();</span>
+<span class="fc" id="L37">		Assert.assertEquals(&quot;4,598&quot;,complexString);	</span>
+<span class="fc" id="L38">	}</span>
+	
+	@Test
+	public void parseImaginaryOnlyTest() {
+<span class="fc" id="L42">		ComplexNumber complex = ComplexNumber.parse(&quot;i&quot;);</span>
+<span class="fc" id="L43">		String complexString = complex.toString();</span>
+<span class="fc" id="L44">		Assert.assertEquals(&quot;1i&quot;,complexString);	</span>
+<span class="fc" id="L45">	}</span>
+	
+	@Test
+	public void parseCompleteTest() {
+<span class="fc" id="L49">		ComplexNumber complex = ComplexNumber.parse(&quot;+45.9-96.58i&quot;);</span>
+<span class="fc" id="L50">		String complexString = complex.toString();</span>
+<span class="fc" id="L51">		Assert.assertEquals(&quot;45,9-96,58i&quot;,complexString);	</span>
+<span class="fc" id="L52">	}</span>
+	
+	@Test(expected=ComplexNumberException.class)
+	public void complexNumberExceptionTest_1() {
+<span class="nc" id="L56">		ComplexNumber.parse(&quot;+45sa.9-96.58i&quot;);</span>
+<span class="nc" id="L57">	}</span>
+	
+	@Test(expected=ComplexNumberException.class)
+	public void complexNumberExceptionTest_2() {
+<span class="nc" id="L61">		ComplexNumber.parse(&quot;98..2&quot;);</span>
+<span class="nc" id="L62">	}</span>
+	
+	@Test
+	public void getMagnitudeTest() {
+<span class="fc" id="L66">		ComplexNumber complex = ComplexNumber.fromMagnitudeAndAngle(5.14,Math.PI);</span>
+<span class="fc" id="L67">		Assert.assertEquals(5.14,complex.getMagnitude(), 1E-8);</span>
+<span class="fc" id="L68">	}</span>
+	
+	@Test
+	public void getAngleTest() {
+<span class="fc" id="L72">		ComplexNumber complex = ComplexNumber.fromMagnitudeAndAngle(5.14,2*Math.PI/3);</span>
+<span class="fc" id="L73">		Assert.assertEquals(2.0943951,complex.getAngle(), 1E-7);</span>
+<span class="fc" id="L74">	}</span>
+	
+	@Test
+	public void addTest() {
+<span class="fc" id="L78">		ComplexNumber complex1 = ComplexNumber.parse(&quot;2+3i&quot;);</span>
+<span class="fc" id="L79">		ComplexNumber complex2 = ComplexNumber.parse(&quot;7.81-6.12i&quot;);</span>
+<span class="fc" id="L80">		complex1 = complex1.add(complex2);</span>
+<span class="fc" id="L81">		String complexString = complex1.toString();</span>
+<span class="fc" id="L82">		Assert.assertEquals(&quot;9,81-3,12i&quot;,complexString);	</span>
+<span class="fc" id="L83">	}</span>
+	
+	@Test
+	public void subTest() {
+<span class="fc" id="L87">		ComplexNumber complex1 = ComplexNumber.parse(&quot;2+3i&quot;);</span>
+<span class="fc" id="L88">		ComplexNumber complex2 = ComplexNumber.parse(&quot;7.81-6.12i&quot;);</span>
+<span class="fc" id="L89">		complex1 = complex1.sub(complex2);</span>
+<span class="fc" id="L90">		String complexString = complex1.toString();</span>
+<span class="fc" id="L91">		Assert.assertEquals(&quot;-5,81+9,12i&quot;,complexString);	</span>
+<span class="fc" id="L92">	}</span>
+	
+	@Test
+	public void mulTest() {
+<span class="fc" id="L96">		ComplexNumber complex1 = ComplexNumber.parse(&quot;2+3i&quot;);</span>
+<span class="fc" id="L97">		ComplexNumber complex2 = ComplexNumber.parse(&quot;7.81-6.12i&quot;);</span>
+<span class="fc" id="L98">		complex1 = complex1.mul(complex2);</span>
+<span class="fc" id="L99">		String complexString = complex1.toString();</span>
+<span class="fc" id="L100">		Assert.assertEquals(&quot;33,98+11,19i&quot;,complexString);	</span>
+<span class="fc" id="L101">	}</span>
+	
+	@Test
+	public void divTest() {
+<span class="fc" id="L105">		ComplexNumber complex1 = ComplexNumber.parse(&quot;2+3i&quot;);</span>
+<span class="fc" id="L106">		ComplexNumber complex2 = ComplexNumber.parse(&quot;7.81-6.12i&quot;);</span>
+<span class="fc" id="L107">		complex1 = complex1.div(complex2);</span>
+<span class="fc" id="L108">		String complexString = complex1.toString();</span>
+<span class="fc" id="L109">		Assert.assertEquals(&quot;-0,0278+0,3623i&quot;,complexString);	</span>
+<span class="fc" id="L110">	}</span>
+	
+	@Test
+	public void powerTest() {
+<span class="fc" id="L114">		ComplexNumber complex = ComplexNumber.parse(&quot;7.81-6.12i&quot;);</span>
+<span class="fc" id="L115">		complex = complex.power(3);</span>
+<span class="fc" id="L116">		String complexString = complex.toString();</span>
+<span class="fc" id="L117">		Assert.assertEquals(&quot;-401,1771-890,6675i&quot;,complexString);	</span>
+<span class="fc" id="L118">	}</span>
+	
+	@Test(expected=ComplexNumberException.class)
+	public void complexNumberExceptionTest_3() {
+<span class="nc" id="L122">		ComplexNumber complex = ComplexNumber.parse(&quot;7.81-6.12i&quot;);</span>
+<span class="nc" id="L123">		complex = complex.power(-2);</span>
+<span class="nc" id="L124">	}</span>
+	
+	@Test
+	public void rootTest() {
+<span class="fc" id="L128">		ComplexNumber complex = ComplexNumber.parse(&quot;7.81-6.12i&quot;);</span>
+<span class="fc" id="L129">		ComplexNumber[] complexRoots = complex.root(3);</span>
+<span class="fc" id="L130">		String[] complexRootsStrings = new String[3];</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">		for(int i = 0; i &lt; 3; i++){</span>
+<span class="fc" id="L132">			complexRootsStrings[i] = complexRoots[i].toString();</span>
+		}
+<span class="fc" id="L134">		String[] expectedRoots = new String[] {&quot;2,0963-0,4722i&quot;,&quot;-0,6392+2,0516i&quot;,&quot;-1,4571-1,5794i&quot;};</span>
+		
+<span class="pc bpc" id="L136" title="1 of 2 branches missed.">		Assert.assertTrue(contains(expectedRoots[0],complexRootsStrings)</span>
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">				         &amp;&amp; contains(expectedRoots[1],complexRootsStrings)</span>
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">				         &amp;&amp; contains(expectedRoots[2],complexRootsStrings));	</span>
+<span class="fc" id="L139">	}</span>
+	
+	@Test(expected=ComplexNumberException.class)
+	public void complexNumberExceptionTest_4() {
+<span class="nc" id="L143">		ComplexNumber complex = ComplexNumber.parse(&quot;7.81-6.12i&quot;);</span>
+<span class="nc" id="L144">		complex.root(0);</span>
+<span class="nc" id="L145">	}</span>
+	
+	/**
+	 * Metoda u kojoj se provjerava da li se korijen kompleksnog broja nalazi u
+	 * polju korijena kompleksnog broja.
+	 * @param root Kompleksni broj koji je jedan od korijena.
+	 * @param rootsArray Polje korijena kompleksnog broja.
+	 * @return true/false Ovisno da li je korijen zadrzan u polju korijena.
+	 */
+	
+	private boolean contains(String root, String[] rootsArray){
+<span class="pc bpc" id="L156" title="1 of 2 branches missed.">		for (int i = 0; i &lt; rootsArray.length; i++){</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">			if(rootsArray[i].equals(root)){</span>
+<span class="fc" id="L158">				return true;</span>
+			}
+		}
+<span class="nc" id="L161">		return false;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CString.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW03-0036461026</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw3</a> &gt; <span class="el_source">CString.java</span></div><h1>CString.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj.hw3;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Klasa koja pruza podrsku za rad sa stringovima.
+ * @author Tomislav
+ */
+
+public final class CString {
+	
+	private final char[] data;
+	private final int offset;
+	private final int length;
+	
+	/**
+	 * Konstruktor koji prima tri parametra.
+	 * @param data Polje znakova.
+	 * @param offset Pomak u odnosu na pocetak polja.
+	 * @param length Duljina znakova koji predstavljaju string.
+	 * @throws CStringException Ako je pomak ili duljina manja od nule ili
+	 * ako je duljina veca duljine polja znakova.
+	 */
+	
+<span class="fc" id="L26">	 public CString(char[] data, int offset, int length) {</span>
+<span class="pc bpc" id="L27" title="2 of 6 branches missed.">		 if (offset+length &gt; data.length || offset &lt; 0 || length &lt; 0){</span>
+<span class="fc" id="L28">			 throw new CStringException(&quot;Invalid parameters&quot;);</span>
+		 }
+<span class="fc" id="L30">		 this.data = data;</span>
+<span class="fc" id="L31">		 this.offset = offset;</span>
+<span class="fc" id="L32">		 this.length = length;</span>
+<span class="fc" id="L33">	 }</span>
+	 
+	 /**
+	  * Konstruktor koji prima jedan parametar.
+	  * @param data Polje znakova.
+	  */
+	 
+<span class="fc" id="L40">	 public CString(char[] data) {</span>
+<span class="fc" id="L41">		 this.data = data;</span>
+<span class="fc" id="L42">		 this.offset = 0;</span>
+<span class="fc" id="L43">		 this.length = data.length;</span>
+<span class="fc" id="L44">	 }</span>
+	 
+	 /**
+	  * Konstruktor koji prima jedan parametar.
+	  * @param original CString objekt na osnovu kojeg se stvara novi
+	  * objekt razreda CString.
+	  */
+	 
+<span class="fc" id="L52">	 public CString(CString original) {</span>
+<span class="fc" id="L53">		 int originalLength = original.length;</span>
+<span class="fc" id="L54">		 this.length = originalLength;</span>
+<span class="fc" id="L55">		 this.offset = 0;</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">		 if (original.data.length &gt; originalLength){</span>
+<span class="fc" id="L57">			char[] newDataArray = new char[originalLength];</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">			for (int i = 0; i &lt; originalLength; i++){</span>
+<span class="fc" id="L59">				newDataArray[i] = original.charAt(i);</span>
+			}
+<span class="fc" id="L61">			this.data = newDataArray;</span>
+<span class="fc" id="L62">		 }</span>
+		 else{
+<span class="nc" id="L64">			 this.data = original.data;</span>
+		 }
+<span class="fc" id="L66">	 }</span>
+	 
+	 /**
+	  * Konstruktor koji prima jedan parametar.
+	  * @param string String vrijednost na osnovu koje se stvara
+	  * objekt razreda CString.
+	  */
+	 
+<span class="fc" id="L74">	 public CString(String string) {</span>
+<span class="fc" id="L75">		this.data = string.toCharArray();</span>
+<span class="fc" id="L76">		this.offset = 0;</span>
+<span class="fc" id="L77">		this.length = string.length();</span>
+<span class="fc" id="L78">	 }</span>
+	 
+	 /**
+	  * Metoda koja vraca duljinu stringa.
+	  * @return Duljina stringa.
+	  */
+
+	 public int length(){
+<span class="fc" id="L86">		 return length;</span>
+	 }
+	 
+	 /**
+	  * Metoda koja vraca jedan znak na zadanom indeksu.
+	  * @param index Indeks na kojem se nalazi trazeni znak.
+	  * @return Znak na zadanom indeksu.
+	  * @throws CStringException Ako je indeks manji od nule ili ako je veci od duljine stringa.
+	  */
+	 
+	 public char charAt(int index){
+<span class="fc bfc" id="L97" title="All 4 branches covered.">		 if (index &lt; 0 || index &gt; length-1){</span>
+<span class="fc" id="L98">			 throw new CStringException(&quot;Invalid index&quot;);</span>
+		 }
+<span class="fc" id="L100">		 return data[offset+index];</span>
+	 }
+	 
+	 /**
+	  * Metoda koja pretvara string u polje znakova.
+	  * @return Polje znakova.
+	  */
+	 
+	 public char[] toCharArray(){
+<span class="fc" id="L109">		 char[] newCharArray = new char[length];</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">		 for (int i = 0; i &lt; length; i++){</span>
+<span class="fc" id="L111">			 newCharArray[i] = data[offset+i];</span>
+		 }
+<span class="fc" id="L113">		 return newCharArray;</span>
+	 }
+	 
+	 /**
+	  * Metoda koja pretvara CString u String vrijednost.
+	  * @return String vrijednost od CString.
+	  */
+	 
+	 public String toString(){
+<span class="fc" id="L122">		 StringBuilder stringBuilder = new StringBuilder(length);</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">		 for (int i = 0; i &lt; length; i++){</span>
+<span class="fc" id="L124">			 stringBuilder.append(data[offset+i]);</span>
+		 }
+<span class="fc" id="L126">		 return stringBuilder.toString();</span>
+	 }
+	 
+	 /**
+	  * Metoda koja vraca indeks na kojem se nalazi prva pojava zadanog znaka.
+	  * @param character Znak za koji se trazi indeks.
+	  * @return Indeks na kojem se znak pojavio prvi puta, inace ako znak ne postoji
+	  * vraca se vrijednost -1.
+	  */
+	 
+	 public int indexOf(char character){
+<span class="fc" id="L137">		 int index = -1;</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">		 for (int i = 0; i &lt; length; i++){</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">			 if (data[offset+i] == character){</span>
+<span class="fc" id="L140">				 index = i;</span>
+<span class="fc" id="L141">				 break;</span>
+			 }
+		 }
+<span class="fc" id="L144">		 return index;</span>
+	 }
+	 
+	 /**
+	  * Metoda koja provjerava da li originalni string zapocinje s ispitivanim stringom. 
+	  * @param string String za kojeg se ispituje da li je pocetak originalnog stringa.
+	  * @return true/false vrijednost ovisno da li originalni string 
+	  * zapocinje s ispitivanim stringom.
+	  */
+	 
+	 public boolean startsWith(CString string){
+<span class="fc bfc" id="L155" title="All 2 branches covered.">		 if (string.length &gt; length){</span>
+<span class="fc" id="L156">			 return false;</span>
+		 }
+<span class="fc bfc" id="L158" title="All 2 branches covered.">		 for (int i = 0, length = string.length; i &lt; length; i++ ){</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">			 if (data[offset+i] != string.charAt(i)){</span>
+<span class="fc" id="L160">				 return false;</span>
+			 }
+		 }
+<span class="fc" id="L163">		 return true;</span>
+	 }
+	 
+	 /**
+	  * Metoda koja provjerava da li originalni string zavrsava s ispitivanim stringom. 
+	  * @param string String za kojeg se ispituje da li je zavrsetak originalnog stringa.
+	  * @return true/false vrijednost ovisno da li originalni string 
+	  * zavrsava s ispitivanim stringom.
+	  */
+	 
+	 public boolean endsWith(CString string){
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">		 if (string.length &gt; length){</span>
+<span class="nc" id="L175">			 return false;</span>
+		 }
+<span class="fc bfc" id="L177" title="All 2 branches covered.">		 for (int i = 0, length = string.length, diff = this.length - length; i &lt; length; i++ ){</span>
+<span class="fc bfc" id="L178" title="All 2 branches covered.">			 if (data[offset+diff+i] != string.charAt(i)){</span>
+<span class="fc" id="L179">				 return false;</span>
+			 }
+		 }
+<span class="fc" id="L182">		 return true;</span>
+	 }
+	 
+	 /**
+	  * Metoda koji provjerava da li originalni string sadrzi ispitivani string.
+	  * @param string String za kojeg se ispituje da li je sadrzan u originalnom stringu.
+	  * @return true/false vrijednost ovisno da li je ispitivani string
+	  *  sadrzan u originalnom stringu.
+	  */
+	  
+	 public boolean contains(CString string){
+<span class="fc bfc" id="L193" title="All 2 branches covered.">		 if (string.length &gt; length){</span>
+<span class="fc" id="L194">			 return false;</span>
+		 }
+<span class="fc" id="L196">		 String patternString = string.toString();</span>
+<span class="fc" id="L197">		 String originalString = this.toString();</span>
+<span class="fc" id="L198">		 Pattern pattern = Pattern.compile(&quot;.*&quot;+patternString+&quot;.*&quot;);</span>
+<span class="fc" id="L199">	     Matcher matcher = pattern.matcher(originalString);</span>
+<span class="fc" id="L200">	     return matcher.matches();</span>
+	 }
+	 
+	 /**
+	  * Metoda koja vraca string koji je podniz originalnog stringa.
+	  * @param startIndex Indeks prvog znaka podniza.
+	  * @param endIndex Indeks kraja podniza. Indeks koji nije dio podniza.
+	  * @return String koji je podniz originalnog stringa.
+	  * @throws CStringException Ako je pocetni indeks manji od nule.
+	  * Ako je pocetni indeks veci od zavrsnog indeksa.
+	  * Ako je pocetni indeks veci od duljine stringa umanjenog za 1.
+	  * Ako je zavrsni indeks veci od duljine stringa. 
+	  */
+	 
+	 CString substring(int startIndex, int endIndex){
+<span class="pc bpc" id="L215" title="2 of 8 branches missed.">		 if (startIndex &lt; 0 || endIndex &lt; startIndex || startIndex &gt; length-1 || endIndex &gt; length){</span>
+<span class="fc" id="L216">			 throw new CStringException(&quot;Invalid index&quot;);</span>
+		 }
+<span class="fc" id="L218">		 int indexDiff = endIndex - startIndex;</span>
+<span class="fc" id="L219">		 return new CString(data,offset+startIndex,indexDiff);</span>
+	 }
+	 
+	 /**
+	  * Metoda koja vraca string koji je pocetni dio originalnog stringa.
+	  * @param n Duljina pocetnog stringa.
+	  * @return String koji je pocetni dio originalnog stringa.
+	  * @throws CStringException Ako je duljina manja od nula ili veca od
+	  * duljine originalnog stringa.
+	  */
+	 
+	 CString left(int n){
+<span class="fc bfc" id="L231" title="All 4 branches covered.">		 if (n &lt; 0 || n &gt; length){</span>
+<span class="fc" id="L232">			 throw new CStringException(&quot;Invalid length&quot;);</span>
+		 }
+<span class="fc" id="L234">		 return new CString(data,offset,n);</span>
+	 }
+	 
+	 /**
+	  * Metoda koja vraca string koji je zavrsni dio originalnog stringa.
+	  * @param n Duljina zavrsnog stringa.
+	  * @return String koji je zavrsni dio originalnog stringa.
+	  * @throws CStringException Ako je duljina manja od nula ili veca od
+	  * duljine originalnog stringa.
+	  */
+	 
+	 CString right(int n){
+<span class="pc bpc" id="L246" title="2 of 4 branches missed.">		 if (n &lt; 0 || n &gt; length){</span>
+<span class="nc" id="L247">			 throw new CStringException(&quot;Invalid length&quot;);</span>
+		 }
+<span class="fc" id="L249">		 return new CString(data,offset+length-n,n);</span>
+	 }
+	 
+	 /**
+	  * Metoda koja na originalni string nadodaje drugi string.
+	  * @param string String koji se dodaje na kraj originalnog stringa.
+	  * @return String nastao nadodavanjem.
+	  */
+	 
+	 CString add(CString string){
+<span class="fc" id="L259">		 char[] concatString = new char[length + string.length()];</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">		 for (int i = 0; i &lt; length; i++){</span>
+<span class="fc" id="L261">			 concatString[i] = this.charAt(i);</span>
+		 }
+<span class="fc bfc" id="L263" title="All 2 branches covered.">		 for (int i = 0; i &lt; string.length; i++){</span>
+<span class="fc" id="L264">			 concatString[length+i] = string.charAt(i);</span>
+		 }
+<span class="fc" id="L266">		 return new CString(concatString);</span>
+	 }
+	 
+	 /**
+	  * Metoda koja sve pojave jednog znaka zamjenjuje drugim znakom.
+	  * @param oldChar Znak koji ce biti zamijenjen..
+	  * @param newChar Znak s kojim ce se izvrsiti zamjena. 
+	  * @return String vrijednost s zamijenjenim znakovima.
+	  */
+	 
+	 CString replaceAll(char oldChar, char newChar){	 
+<span class="fc" id="L277">		 char[] modifiedArray = this.toCharArray();</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">		 for(int i = 0; i &lt; length; i++ ){</span>
+<span class="fc bfc" id="L279" title="All 2 branches covered.">			 if(modifiedArray[i] == oldChar){</span>
+<span class="fc" id="L280">				 modifiedArray[i] = newChar;</span>
+			 }
+		 }
+<span class="fc" id="L283">		 return new CString(modifiedArray);</span>
+	 }
+	 
+	 /**
+	  * Metoda koja sve pojave jednog niza zamjenjuje drugim nizom.
+	  * @param oldStr Niz koji ce biti zamijenjen..
+	  * @param newStr Niz s kojim ce se izvrsiti zamjena. 
+	  * @return String vrijednost s zamijenjenim nizovima.
+	  */
+	 
+	 CString replaceAll (CString oldStr, CString newStr){
+<span class="fc" id="L294">		 String replacedStrString = this.toString();</span>
+<span class="fc" id="L295">		 replacedStrString = replacedStrString.replaceAll(oldStr.toString(), newStr.toString());</span>
+<span class="fc" id="L296">		 return new CString(replacedStrString);</span>
+	 }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

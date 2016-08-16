@@ -1,0 +1,54 @@
+Problem 1.
+
+
+Create a package hr.fer.zemris.java.webserver and in it a class RequestContext. This class has a single
+inner public static class entitled RCCookie. RCCookie has read-only String properties name, value, domain and
+path and read-only Integer property maxAge.
+The class RequestContext has following private properties OutputStream outputStream and Charset
+charset; following public write-only properties String encoding (defaults to "UTF-8"), int statusCode
+(defaults to 200), String statusText (defaults to "OK"), String mimeType (defaults to "text/html");
+following private collections Map<String,String> parameters, Map<String,String>
+temporaryParameters, Map<String,String> persistentParameters, List<RCCookie> outputCookies and
+private property boolean headerGenerated (deafults to false). There is a single constructor available:
+public RequestContext(
+OutputStream outputStream, // must not be null!
+Map<String,String> parameters, // if null, treat as empty
+Map<String,String> persistentParameters, // if null, treat as empty
+List<RCCookie> outputCookies); // if null, treat as empty
+The map parameters should be treated as read-only map. Maps temporaryParameters and
+persistentParameters are readable and writable. Add following methods:
+* method that retrieves value from parameters map (or null if no association exists):
+public String getParameter(String name);
+* method that retrieves names of all parameters in parameters map (note, this set must be read-only):
+public Set<String> getParameterNames();
+* method that retrieves value from persistentParameters map (or null if no association exists):
+public String getPersistentParameter(String name);
+* method that retrieves names of all parameters in persistent parameters map (note, this set must be readonly):
+public Set<String> getPersistentParameterNames();
+* method that stores a value to persistentParameters map:
+public void setPersistentParameter(String name, String value);
+* method that removes a value from persistentParameters map:
+public void removePersistentParameter(String name);
+* method that retrieves value from temporaryParameters map (or null if no association exists):
+public String getTemporaryParameter(String name);
+* method that retrieves names of all parameters in temporary parameters map (note, this set must be readonly):
+public Set<String> getTemporaryParameterNames();
+* method that stores a value to temporaryParameters map:
+public void setTemporaryParameter(String name, String value);
+* method that removes a value from temporaryParameters map:
+public void removeTemporaryParameter(String name);
+Add following two methods:
+public RequestContext write(byte[] data) throws IOException;
+public RequestContext write(String text) throws IOException;
+Both of these write methods write its data into outputStream that was given to RequestContext in
+constructor. The method that gets String argument converts given data into bytes using previously
+configured encoding (i.e. charset). However, there is a catch. First time that any of these two write
+methods is called, a special header must be written to underlying outputStream and only then can given data
+be written. This header is written only once (no matter which write method is called of the two available).
+At the moment the header is created and written all attempts to change any of properties encoding,
+statusCode, statusText, mimeType, outputCookies must throw RuntimeException; since these properties
+are used for header creating as well as for configuration of RequestContext objects, after the header is
+created there is no point in allowing the change anyway. At the moment of header construction you should
+create a value for charset property: charset = Charset.forName(encoding);.
+So how does the header looks like? Properties used for header construction are encoding, statusCode,
+statusText, mimeType, outputCookies.

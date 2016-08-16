@@ -1,0 +1,18 @@
+			load r1, @lokacija
+@petlja1:   iinput @lokacija
+			load r2, @lokacija
+			testEquals r1, r2
+			jumpIfTrue @petlja1
+			load r3, @brojac
+			load r4, @nula
+@petlja2:	testEquals r3, r4
+			jumpIfTrue @gotovo
+			decrement r3
+			increment r2
+			echo r2
+			jump @petlja2
+@gotovo:	halt
+
+@lokacija:	DEFSTR "None"	; poruka na jednoj mem. lokaciji
+@brojac:	DEFINT 5			; broj 5 na drugoj mem. lokaciji
+@nula:		DEFINT 0			; broj 0 na trecoj mem. lokaciji

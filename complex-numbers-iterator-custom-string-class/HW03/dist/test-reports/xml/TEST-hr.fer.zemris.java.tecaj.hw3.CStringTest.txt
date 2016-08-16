@@ -1,0 +1,47 @@
+Testsuite: hr.fer.zemris.java.tecaj.hw3.CStringTest
+Tests run: 44, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,137 sec
+
+Testcase: toCharArrayTest took 0,012 sec
+Testcase: indexOfTest_1 took 0 sec
+Testcase: indexOfTest_2 took 0,001 sec
+Testcase: indexOfTest_3 took 0 sec
+Testcase: containsTest_1 took 0 sec
+Testcase: containsTest_2 took 0 sec
+Testcase: containsTest_3 took 0 sec
+Testcase: containsTest_4 took 0 sec
+Testcase: rightTest_1 took 0 sec
+Testcase: rightTest_2 took 0 sec
+Testcase: rightTest_3 took 0 sec
+Testcase: substringTest_1 took 0 sec
+Testcase: substringTest_2 took 0 sec
+Testcase: substringTest_3 took 0 sec
+Testcase: substringTest_4 took 0 sec
+Testcase: replaceAllCharTest_1 took 0 sec
+Testcase: replaceAllCharTest_2 took 0 sec
+Testcase: addTest_1 took 0,001 sec
+Testcase: addTest_2 took 0 sec
+Testcase: cStringExceptionTest_1 took 0,001 sec
+Testcase: cStringExceptionTest_2 took 0 sec
+Testcase: cStringExceptionTest_3 took 0 sec
+Testcase: cStringExceptionTest_4 took 0 sec
+Testcase: cStringExceptionTest_5 took 0 sec
+Testcase: cStringExceptionTest_6 took 0 sec
+Testcase: cStringExceptionTest_7 took 0 sec
+Testcase: charAtTest took 0,001 sec
+Testcase: toStringTest took 0 sec
+Testcase: startsWithTest_1 took 0 sec
+Testcase: startsWithTest_2 took 0 sec
+Testcase: startsWithTest_3 took 0 sec
+Testcase: lengthTest took 0 sec
+Testcase: replaceAllStringTest_1 took 0 sec
+Testcase: replaceAllStringTest_2 took 0,001 sec
+Testcase: constructorTest_1 took 0 sec
+Testcase: constructorTest_2 took 0 sec
+Testcase: constructorTest_3 took 0 sec
+Testcase: constructorTest_4 took 0 sec
+Testcase: endsWithTest_1 took 0 sec
+Testcase: endsWithTest_2 took 0 sec
+Testcase: endsWithTest_3 took 0 sec
+Testcase: leftTest_1 took 0 sec
+Testcase: leftTest_2 took 0 sec
+Testcase: leftTest_3 took 0 sec

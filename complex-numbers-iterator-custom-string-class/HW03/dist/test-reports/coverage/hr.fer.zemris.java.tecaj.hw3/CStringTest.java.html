@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CStringTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW03-0036461026</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw3</a> &gt; <span class="el_source">CStringTest.java</span></div><h1>CStringTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj.hw3;
+
+import org.junit.Test;
+import org.junit.Assert;
+
+<span class="fc" id="L6">public class CStringTest {</span>
+	
+	@Test
+	public void constructorTest_1() {
+<span class="fc" id="L10">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L11">		CString cString = new CString(data,2,4);</span>
+<span class="fc" id="L12">		Assert.assertEquals(&quot;greb&quot;,cString.toString());</span>
+<span class="fc" id="L13">	}</span>
+	
+	@Test(expected=CStringException.class)
+	public void cStringExceptionTest_1() {
+<span class="nc" id="L17">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="nc" id="L18">		new CString(data,2,7);</span>
+<span class="nc" id="L19">	}</span>
+	
+	@Test
+	public void constructorTest_2() {
+<span class="fc" id="L23">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L24">		CString cString = new CString(data);</span>
+<span class="fc" id="L25">		Assert.assertEquals(&quot;Zagreb&quot;,cString.toString());</span>
+<span class="fc" id="L26">	}</span>
+	
+	@Test
+	public void constructorTest_3() {
+<span class="fc" id="L30">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L31">		CString cString = new CString(new CString(data,2,4));</span>
+<span class="fc" id="L32">		Assert.assertEquals(&quot;greb&quot;,cString.toString());</span>
+<span class="fc" id="L33">	}</span>
+	
+	@Test
+	public void constructorTest_4() {
+<span class="fc" id="L37">		CString cString = new CString(&quot;Zagreb&quot;);</span>
+<span class="fc" id="L38">		Assert.assertEquals(&quot;Zagreb&quot;,cString.toString());</span>
+<span class="fc" id="L39">	}</span>
+	
+	@Test
+	public void lengthTest() {
+<span class="fc" id="L43">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L44">		CString cString = new CString(data,2,4);</span>
+<span class="fc" id="L45">		Assert.assertEquals(4,cString.length());</span>
+<span class="fc" id="L46">	}</span>
+	
+	@Test
+	public void charAtTest() {
+<span class="fc" id="L50">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L51">		CString cString = new CString(data,2,4);</span>
+<span class="fc" id="L52">		Assert.assertEquals('e',cString.charAt(2));</span>
+<span class="fc" id="L53">	}</span>
+	
+	@Test(expected=CStringException.class)
+	public void cStringExceptionTest_2() {
+<span class="nc" id="L57">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="nc" id="L58">		CString cString = new CString(data);</span>
+<span class="nc" id="L59">		cString.charAt(6);</span>
+<span class="nc" id="L60">	}</span>
+	
+	@Test(expected=CStringException.class)
+	public void cStringExceptionTest_3() {
+<span class="nc" id="L64">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="nc" id="L65">		CString cString = new CString(data);</span>
+<span class="nc" id="L66">		cString.charAt(-1);</span>
+<span class="nc" id="L67">	}</span>
+	
+	@Test
+	public void toCharArrayTest() {
+<span class="fc" id="L71">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L72">		CString cString = new CString(data,2,3);</span>
+<span class="fc" id="L73">		char[] expectedData = new char[]{'g','r','e'};</span>
+<span class="fc" id="L74">		Assert.assertArrayEquals(expectedData, cString.toCharArray());</span>
+<span class="fc" id="L75">	}</span>
+	
+	@Test
+	public void toStringTest() {
+<span class="fc" id="L79">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L80">		CString cString = new CString(data,2,3);</span>
+<span class="fc" id="L81">		Assert.assertEquals(&quot;gre&quot;, cString.toString());</span>
+<span class="fc" id="L82">	}</span>
+	
+	@Test
+	public void indexOfTest_1() {
+<span class="fc" id="L86">		char[] data = new char[]{'Z','a','g','r','e','b','g'};</span>
+<span class="fc" id="L87">		CString cString = new CString(data);</span>
+<span class="fc" id="L88">		Assert.assertEquals(2, cString.indexOf('g'));</span>
+<span class="fc" id="L89">	}</span>
+	
+	@Test
+	public void indexOfTest_2() {
+<span class="fc" id="L93">		char[] data = new char[]{'Z','a','g','r','e','b','g'};</span>
+<span class="fc" id="L94">		CString cString = new CString(data,3,4);</span>
+<span class="fc" id="L95">		Assert.assertEquals(3, cString.indexOf('g'));</span>
+<span class="fc" id="L96">	}</span>
+	
+	@Test
+	public void indexOfTest_3() {
+<span class="fc" id="L100">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L101">		CString cString = new CString(data);</span>
+<span class="fc" id="L102">		Assert.assertEquals(-1, cString.indexOf('A'));</span>
+<span class="fc" id="L103">	}</span>
+	
+	@Test
+	public void startsWithTest_1() {
+<span class="fc" id="L107">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L108">		CString cString = new CString(data);</span>
+<span class="fc" id="L109">		CString startString = new CString(&quot;Zag&quot;);</span>
+<span class="fc" id="L110">		Assert.assertTrue(cString.startsWith(startString));</span>
+<span class="fc" id="L111">	}</span>
+	
+	@Test
+	public void startsWithTest_2() {
+<span class="fc" id="L115">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L116">		CString cString = new CString(data);</span>
+<span class="fc" id="L117">		CString startString = new CString(&quot;gre&quot;);</span>
+<span class="fc" id="L118">		Assert.assertFalse(cString.startsWith(startString));</span>
+<span class="fc" id="L119">	}</span>
+	
+	@Test
+	public void startsWithTest_3() {
+<span class="fc" id="L123">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L124">		CString cString = new CString(data);</span>
+<span class="fc" id="L125">		CString startString = new CString(&quot;Zagreb1&quot;);</span>
+<span class="fc" id="L126">		Assert.assertFalse(cString.startsWith(startString));</span>
+<span class="fc" id="L127">	}</span>
+	
+	@Test
+	public void endsWithTest_1() {
+<span class="fc" id="L131">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L132">		CString cString = new CString(data);</span>
+<span class="fc" id="L133">		CString endString = new CString(&quot;eb&quot;);</span>
+<span class="fc" id="L134">		Assert.assertTrue(cString.endsWith(endString));</span>
+<span class="fc" id="L135">	}</span>
+	
+	@Test
+	public void endsWithTest_2() {
+<span class="fc" id="L139">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L140">		CString cString = new CString(data);</span>
+<span class="fc" id="L141">		CString endString = new CString(&quot;Zagreb&quot;);</span>
+<span class="fc" id="L142">		Assert.assertTrue(cString.endsWith(endString));</span>
+<span class="fc" id="L143">	}</span>
+	
+	@Test
+	public void endsWithTest_3() {
+<span class="fc" id="L147">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L148">		CString cString = new CString(data);</span>
+<span class="fc" id="L149">		CString endString = new CString(&quot;Zag&quot;);</span>
+<span class="fc" id="L150">		Assert.assertFalse(cString.endsWith(endString));</span>
+<span class="fc" id="L151">	}</span>
+	
+	@Test
+	public void containsTest_1() {
+<span class="fc" id="L155">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L156">		CString cString = new CString(data);</span>
+<span class="fc" id="L157">		CString subString = new CString(&quot;gre&quot;);</span>
+<span class="fc" id="L158">		Assert.assertTrue(cString.contains(subString));</span>
+<span class="fc" id="L159">	}</span>
+	
+	@Test
+	public void containsTest_2() {
+<span class="fc" id="L163">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L164">		CString cString = new CString(data);</span>
+<span class="fc" id="L165">		CString subString = new CString(&quot;Zagreb&quot;);</span>
+<span class="fc" id="L166">		Assert.assertTrue(cString.contains(subString));</span>
+<span class="fc" id="L167">	}</span>
+	
+	@Test
+	public void containsTest_3() {
+<span class="fc" id="L171">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L172">		CString cString = new CString(data);</span>
+<span class="fc" id="L173">		CString subString = new CString(&quot;Aeb&quot;);</span>
+<span class="fc" id="L174">		Assert.assertFalse(cString.contains(subString));</span>
+<span class="fc" id="L175">	}</span>
+	
+	@Test
+	public void containsTest_4() {
+<span class="fc" id="L179">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L180">		CString cString = new CString(data);</span>
+<span class="fc" id="L181">		CString subString = new CString(&quot;Zagreb2&quot;);</span>
+<span class="fc" id="L182">		Assert.assertFalse(cString.contains(subString));</span>
+<span class="fc" id="L183">	}</span>
+	
+	@Test
+	public void substringTest_1() {
+<span class="fc" id="L187">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L188">		CString cString = new CString(data);</span>
+<span class="fc" id="L189">		Assert.assertEquals(&quot;agr&quot;,cString.substring(1, 4).toString());</span>
+<span class="fc" id="L190">	}</span>
+	
+	@Test
+	public void substringTest_2() {
+<span class="fc" id="L194">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L195">		CString cString = new CString(data);</span>
+<span class="fc" id="L196">		Assert.assertEquals(&quot;Zagreb&quot;,cString.substring(0, cString.length()).toString());</span>
+<span class="fc" id="L197">	}</span>
+	
+	@Test
+	public void substringTest_3() {
+<span class="fc" id="L201">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L202">		CString cString = new CString(data);</span>
+<span class="fc" id="L203">		Assert.assertEquals(&quot;b&quot;,cString.substring(5, cString.length()).toString());</span>
+<span class="fc" id="L204">	}</span>
+	
+	@Test
+	public void substringTest_4() {
+<span class="fc" id="L208">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L209">		CString cString = new CString(data);</span>
+<span class="fc" id="L210">		Assert.assertEquals(&quot;&quot;,cString.substring(0, 0).toString());</span>
+<span class="fc" id="L211">	}</span>
+	
+	@Test(expected=CStringException.class)
+	public void cStringExceptionTest_4() {
+<span class="nc" id="L215">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="nc" id="L216">		CString cString = new CString(data);</span>
+<span class="nc" id="L217">		cString.substring(0, 7).toString();</span>
+<span class="nc" id="L218">	}</span>
+	
+	@Test(expected=CStringException.class)
+	public void cStringExceptionTest_5() {
+<span class="nc" id="L222">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="nc" id="L223">		CString cString = new CString(data);</span>
+<span class="nc" id="L224">		cString.substring(5, 3).toString();</span>
+<span class="nc" id="L225">	}</span>
+	
+	@Test
+	public void leftTest_1() {
+<span class="fc" id="L229">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L230">		CString cString = new CString(data);</span>
+<span class="fc" id="L231">		Assert.assertEquals(&quot;Zag&quot;,cString.left(3).toString());</span>
+<span class="fc" id="L232">	}</span>
+	
+	@Test
+	public void leftTest_2() {
+<span class="fc" id="L236">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L237">		CString cString = new CString(data);</span>
+<span class="fc" id="L238">		Assert.assertEquals(&quot;Zagreb&quot;,cString.left(6).toString());</span>
+<span class="fc" id="L239">	}</span>
+	
+	@Test
+	public void leftTest_3() {
+<span class="fc" id="L243">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L244">		CString cString = new CString(data);</span>
+<span class="fc" id="L245">		Assert.assertEquals(&quot;&quot;,cString.left(0).toString());</span>
+<span class="fc" id="L246">	}</span>
+	
+	@Test(expected=CStringException.class)
+	public void cStringExceptionTest_6() {
+<span class="nc" id="L250">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="nc" id="L251">		CString cString = new CString(data);</span>
+<span class="nc" id="L252">		cString.left(7).toString();</span>
+<span class="nc" id="L253">	}</span>
+	
+	@Test(expected=CStringException.class)
+	public void cStringExceptionTest_7() {
+<span class="nc" id="L257">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="nc" id="L258">		CString cString = new CString(data);</span>
+<span class="nc" id="L259">		cString.left(-5).toString();</span>
+<span class="nc" id="L260">	}</span>
+	
+	@Test
+	public void rightTest_1() {
+<span class="fc" id="L264">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L265">		CString cString = new CString(data);</span>
+<span class="fc" id="L266">		Assert.assertEquals(&quot;reb&quot;,cString.right(3).toString());</span>
+<span class="fc" id="L267">	}</span>
+	
+	@Test
+	public void rightTest_2() {
+<span class="fc" id="L271">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L272">		CString cString = new CString(data);</span>
+<span class="fc" id="L273">		Assert.assertEquals(&quot;Zagreb&quot;,cString.right(6).toString());</span>
+<span class="fc" id="L274">	}</span>
+	
+	@Test
+	public void rightTest_3() {
+<span class="fc" id="L278">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L279">		CString cString = new CString(data);</span>
+<span class="fc" id="L280">		Assert.assertEquals(&quot;&quot;,cString.right(0).toString());</span>
+<span class="fc" id="L281">	}</span>
+	
+	@Test
+	public void addTest_1() {
+<span class="fc" id="L285">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L286">		CString cString = new CString(data);</span>
+<span class="fc" id="L287">		Assert.assertEquals(&quot;ZagrebSplit&quot;,cString.add(new CString(&quot;Split&quot;)).toString());</span>
+<span class="fc" id="L288">	}</span>
+	
+	@Test
+	public void addTest_2() {
+<span class="fc" id="L292">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L293">		CString cString = new CString(data);</span>
+<span class="fc" id="L294">		CString test = cString.add(new CString(&quot;Split&quot;)).add(new CString(&quot;Rijeka&quot;));</span>
+<span class="fc" id="L295">		Assert.assertEquals(&quot;ZagrebSplitRijeka&quot;,test.toString());</span>
+<span class="fc" id="L296">	}</span>
+	
+	@Test
+	public void replaceAllCharTest_1() {
+<span class="fc" id="L300">		char[] data = new char[]{'Z','a','g','r','e','b'};</span>
+<span class="fc" id="L301">		CString cString = new CString(data);</span>
+<span class="fc" id="L302">		Assert.assertEquals(&quot;Aagreb&quot;,cString.replaceAll('Z', 'A').toString());</span>
+<span class="fc" id="L303">	}</span>
+	
+	@Test
+	public void replaceAllCharTest_2() {
+<span class="fc" id="L307">		char[] data = new char[]{'Z','Z','Z','Z','Z','Z'};</span>
+<span class="fc" id="L308">		CString cString = new CString(data);</span>
+<span class="fc" id="L309">		Assert.assertEquals(&quot;111111&quot;,cString.replaceAll('Z', '1').toString());</span>
+<span class="fc" id="L310">	}</span>
+	
+	@Test
+	public void replaceAllStringTest_1() {
+<span class="fc" id="L314">		CString cString = new CString(&quot;ZigZagZigZagZigZagZig&quot;);</span>
+<span class="fc" id="L315">		CString oldStr = new CString(&quot;Zag&quot;);</span>
+<span class="fc" id="L316">		CString newStr = new CString(&quot;AE&quot;);</span>
+<span class="fc" id="L317">		Assert.assertEquals(&quot;ZigAEZigAEZigAEZig&quot;,cString.replaceAll(oldStr, newStr).toString());</span>
+<span class="fc" id="L318">	}</span>
+	
+	@Test
+	public void replaceAllStringTest_2() {
+<span class="fc" id="L322">		CString cString = new CString(&quot;ababab&quot;);</span>
+<span class="fc" id="L323">		CString oldStr = new CString(&quot;ab&quot;);</span>
+<span class="fc" id="L324">		CString newStr = new CString(&quot;abab&quot;);</span>
+<span class="fc" id="L325">		Assert.assertEquals(&quot;abababababab&quot;,cString.replaceAll(oldStr, newStr).toString());</span>
+<span class="fc" id="L326">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>
