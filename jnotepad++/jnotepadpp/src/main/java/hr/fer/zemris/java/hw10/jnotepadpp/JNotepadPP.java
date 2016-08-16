@@ -797,7 +797,7 @@ public class JNotepadPP extends JFrame {
 
 			/**
 			 * Leaves unique lines in selected text lines.
-			 * Duplicate lines are deleted.
+			 * Duplicates are deleted.
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
